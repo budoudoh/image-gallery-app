@@ -1,0 +1,19 @@
+#images (should be stored locally)
+resources/gallery/images/**
+
+# dependencies
+node_modules
+
+# logs
+*.log
+
+# next.js
+.next
+next-env.d.ts
+
+# build
+/app
+dist
+
+#IDE config files
+.vscode

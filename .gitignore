@@ -1,5 +1,5 @@
 #images (should be stored locally)
-resources/gallery/images/**
+renderer/public/gallery/**
 
 # dependencies
 node_modules

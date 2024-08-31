@@ -1,6 +1,6 @@
-appId: com.example.nextron
-productName: My Nextron App
-copyright: Copyright © 2018 Yoshihide Shiono
+appId: com.udoudoh.image-gallery
+productName: Image Gallery App
+copyright: Copyright © 2024 Basil Udoudoh
 directories:
   output: dist
   buildResources: resources

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { Slide, Fade } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
 
 export const Gallery = ({
     images,
@@ -11,28 +13,27 @@ export const Gallery = ({
     imageHeight?: number;
 }) => {
     const [index, setIndex] = useState(0);
-    const [image, setImage] = useState(images[index]);
+    const divStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundSize: 'contain',
+        height: "100vh",
+        width: "100vw",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+    }
     images = images.sort(() => Math.random() - 0.5);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if(index >= images.length - 1){
-                images = images.sort(() => Math.random() - 0.5);
-                setIndex(0);
-            } 
-            else {
-                setIndex(index + 1);
-            }
-            setImage(images[index]);
-            console.log(images[index]);
-          }, timing*1000);
-        
-          return () => clearInterval(interval);
-    }, [index]);
     return (
-        <div className="gallery">
-            <div key={index} className="gallery-item">
-                <Image src={image} fill priority className='object-contain w-auto' alt={'Image'} suppressHydrationWarning/>
-            </div>
+        <div className="slide-container">
+            <Fade arrows={false} duration={timing*1000}>
+            {images.map((image, index)=> (
+                <div key={index}>
+                    <div style={{...divStyle, 'backgroundImage': `url(${image})` }}>
+                    </div>
+                </div>
+            ))} 
+            </Fade>
         </div>
     );
 }

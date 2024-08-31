@@ -1,6 +1,7 @@
 import path from 'path'
 import { app, ipcMain } from 'electron'
 import serve from 'electron-serve'
+import { screen } from 'electron'
 import { createWindow } from './helpers'
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -14,9 +15,12 @@ if (isProd) {
 ;(async () => {
   await app.whenReady()
 
+  // Create a window that fills the screen's available work area.
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { width, height } = primaryDisplay.workAreaSize
   const mainWindow = createWindow('main', {
-    width: 1000,
-    height: 600,
+    width: width,
+    height: height,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
